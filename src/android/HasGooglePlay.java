@@ -67,12 +67,16 @@ public class HasGooglePlay extends CordovaPlugin {
 
   // from http://stackoverflow.com/questions/10551531/cannot-determine-whether-google-play-store-is-installed-or-not-on-android-device
   protected final boolean isPackageInstalled(String packageName) {
-    try {
-      application.getPackageManager().getPackageInfo(packageName, 0);
-    } catch (NameNotFoundException e) {
-      return false;
+    PackageManager packageManager = getApplication().getPackageManager();
+    List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
+
+    for (PackageInfo packageInfo : packages) {
+      if (packageInfo.packageName.equals(packageName)) {
+        return true;
+      }
     }
-    return true;
+
+    return false;
   }
 
   //another way to add a javascript interface, not tested..
