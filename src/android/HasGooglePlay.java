@@ -10,9 +10,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.ContextWrapper.*;
+import android.view.ContextThemeWrapper.*;
+import android.app.*;
 import android.content.pm.*;
 import android.app.Service.*;
-import android.content.ContextWrapper.*;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import android.webkit.JavascriptInterface;
