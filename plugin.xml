@@ -6,6 +6,7 @@
 
   <name>Has-Google-Play</name>
   <description>This plugin let your cordova javascript app to know if the Android device has google play installed.</description>
+  <repo>https://github.com/sauvainr/cordova-has-google-play.git</repo>
   <license>MIT</license>
   <keywords>cordova,Google Play</keywords>
 
