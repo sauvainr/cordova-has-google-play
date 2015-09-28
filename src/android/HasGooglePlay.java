@@ -43,14 +43,15 @@ public class HasGooglePlay extends CordovaPlugin {
       if(callbackContext != null) {
         callbackContext.error("Unknown action.");
       }
-      return null;
+      return false;
     }
   }
 
   @JavascriptInterface
   public boolean isGooglePlayInstalled() {
+    Context context=this.cordova.getActivity().getApplicationContext();
     boolean googlePlayStoreInstalled;
-    int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable();
+    int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
     googlePlayStoreInstalled = val == ConnectionResult.SUCCESS;
     return googlePlayStoreInstalled;
   }
