@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-has-google-play"
-  version="0.1.0">
+  version="0.1.1">
 
   <name>Has-Google-Play</name>
   <description>This plugin let your cordova javascript app to know if the Android device has google play installed.</description>
