@@ -76,7 +76,7 @@ public class HasGooglePlay extends CordovaPlugin {
   }
 
   // from http://stackoverflow.com/questions/10551531/cannot-determine-whether-google-play-store-is-installed-or-not-on-android-device
-  protected final boolean isPackageInstalled(String packageName) {
+  plublic boolean isPackageInstalled(String packageName) {
     PackageManager packageManager = this.cordova.getActivity().getApplication().getPackageManager();
     List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
 

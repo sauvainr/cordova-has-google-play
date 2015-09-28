@@ -1,32 +1,35 @@
 var exec = require('cordova/exec');
 
 var HasGooglePlay = {
-  hasGooglePlayServices: undefined,
-  hasGooglePlayStore: undefined,
-  check: function checkGooglePlay(callback) {
-    this.hasGooglePlayServices = undefined;
-    this.hasGooglePlayStore = undefined;
-    var that = this;
+	hasGooglePlayServices: undefined,
+	hasGooglePlayStore: undefined,
+	check: function checkGooglePlay(callback) {
+		HasGooglePlay.hasGooglePlayServices = undefined;
+		HasGooglePlay.hasGooglePlayStore = undefined;
 
-    exec(function (has) {
-      that.hasGooglePlayServices = (has === "true");
-      if (typeof callback == 'function')
-        callback(that.hasGooglePlayServices);
-    }, function (err) {
-      if (typeof callback == 'function')
-        callback(undefined, err);
-    }, "HasGooglePlay", "hasGooglePlayServices", []);
+		exec(function (has) {
+			HasGooglePlay.hasGooglePlayServices = (has === "true");
+			if (typeof callback == 'function')
+				callback(HasGooglePlay.hasGooglePlayServices);
+		}, function (err) {
+			if (typeof callback == 'function')
+				callback(undefined, err);
 
-    exec(function (has) {
-      that.hasGooglePlayStore = (has === "true");
-      if (typeof callback == 'function')
-        callback(that.hasGooglePlayStore);
-    }, function (err) {
-      if (typeof callback == 'function')
-        callback(undefined, err);
-    }, "HasGooglePlay", "hasGooglePlayStore", []);
+			console.error(err);
+		}, "HasGooglePlay", "hasGooglePlayServices", []);
 
-  }
+		exec(function (has) {
+			HasGooglePlay.hasGooglePlayStore = (has === "true");
+			if (typeof callback == 'function')
+				callback(HasGooglePlay.hasGooglePlayStore);
+		}, function (err) {
+			if (typeof callback == 'function')
+				callback(undefined, err);
+
+			console.error(err);
+		}, "HasGooglePlay", "hasGooglePlayStore", []);
+
+	}
 };
 
 HasGooglePlay.check();
