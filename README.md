@@ -12,8 +12,18 @@ Has-Google-Play
 
 ## Usage
 
-    if(!window.hasGooglePlay()){
+The test is runned automatically at startup, so you can just ust:
+
+    if(!window.HasGooglePlay.hasGooglePlayStore || !window.HasGooglePlay.hasGooglePlayServices){
 
       .. auto-update logic ..
 
     }
+
+or
+
+    window.HasGooglePlay.check(function (hasGooglePlay) {
+
+      console.log(hasGooglePlay);
+
+    });

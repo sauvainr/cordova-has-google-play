@@ -17,6 +17,8 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 */
 public class HasGooglePlay extends CordovaPlugin {
 
+  private static final String GooglePlayStorePackageName = "com.google.market";
+
   /**
   * Executes the request and returns PluginResult.
   *
@@ -27,28 +29,29 @@ public class HasGooglePlay extends CordovaPlugin {
   */
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-    if (action.equals("hasGooglePlay")) {
+    // String message = args.getString(0);
 
-      // String message = args.getString(0);
+    if (action.equals("hasGooglePlayServices")) {
 
-      boolean hasGooglePlay = this.isGooglePlayInstalled();
+      boolean hasGooglePlay = this.isGooglePlayServicesInstalled();
 
-      if(callbackContext != null) {
-         callbackContext.success(java.lang.Boolean.toString(hasGooglePlay));
-      }
+      callbackContext.success(java.lang.Boolean.toString(hasGooglePlay));
+      return true;
+    } else if (action.equals("hasGooglePlayStore")) {
 
-      return hasGooglePlay;
+      boolean hasGooglePlayStore = this.isGooglePlayStoreInstalled();
+
+      callbackContext.success(java.lang.Boolean.toString(hasGooglePlayStore));
+      return true;
     } else {
 
-      if(callbackContext != null) {
-        callbackContext.error("Unknown action.");
-      }
+      callbackContext.error("Unknown action.");
       return false;
     }
   }
 
   @JavascriptInterface
-  public boolean isGooglePlayInstalled() {
+  public boolean isGooglePlayServicesInstalled() {
     Context context=this.cordova.getActivity().getApplicationContext();
     boolean googlePlayStoreInstalled;
     int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
@@ -56,7 +59,23 @@ public class HasGooglePlay extends CordovaPlugin {
     return googlePlayStoreInstalled;
   }
 
-  //another way to add a javascript interface
+  @JavascriptInterface
+  public boolean isGooglePlayStoreInstalled() {
+    //note test old & new play sotre name
+    return this.isPackageInstalled("com.google.market") || this.isPackageInstalled("com.android.vending");
+  }
+
+  // from http://stackoverflow.com/questions/10551531/cannot-determine-whether-google-play-store-is-installed-or-not-on-android-device
+  protected final boolean isPackageInstalled(String packageName) {
+    try {
+      application.getPackageManager().getPackageInfo(packageName, 0);
+    } catch (NameNotFoundException e) {
+      return false;
+    }
+    return true;
+  }
+
+  //another way to add a javascript interface, not tested..
   // super.appView.addJavascriptInterface(new WebAppInterface(this), "jsInterface");
   // public class WebAppInterface {
   //   Context mContext;
