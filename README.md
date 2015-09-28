@@ -12,7 +12,7 @@ Has-Google-Play
 
 ## Usage
 
-The test is runned automatically at startup, so you can just ust:
+The test is runned automatically at startup, so you can just just:
 
     if(!window.HasGooglePlay.hasGooglePlayStore || !window.HasGooglePlay.hasGooglePlayServices){
 

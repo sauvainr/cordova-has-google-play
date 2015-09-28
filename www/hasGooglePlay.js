@@ -1,6 +1,6 @@
 var exec = require('cordova/exec');
 
-module.exports = {
+var HasGooglePlay = {
   hasGooglePlayServices: undefined,
   hasGooglePlayStore: undefined,
   check: function checkGooglePlay(callback) {
@@ -29,4 +29,5 @@ module.exports = {
   }
 };
 
-module.exports.check();
+HasGooglePlay.check();
+module.exports = HasGooglePlay;
