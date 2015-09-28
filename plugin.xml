@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-has-google-play"
+  version="0.1.0">
+  <name>Has-Google-Play</name>
+  <description>This plugin let your cordova javascript app to know if the Android device has google play installed./description>
+  <license>MIT</license>
+  <keywords>cordova,Google Play</keywords>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <js-module src="www/hasGooglePlay.js" name="hasGooglePlay">
+    <clobbers target="window.HasGooglePlay" />
+  </js-module>
+
+  <platform name="android">
+    <source-file src="src/android/HasGooglePlay.java" target-dir="src/org/apache/cordova/plugin" />
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="HasGooglePlay">
+        <param name="android-package" value="org.apache.cordova.plugin.HasGooglePlay"/>
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+  </platform>
+
+</plugin>
