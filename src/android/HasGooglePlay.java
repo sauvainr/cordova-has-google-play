@@ -1,5 +1,6 @@
 package org.apache.cordova.plugin;
 
+import java.util;
 import org.apache.cordova.*;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -9,7 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.pm.*;
+import android.app.Service;
+import android.content.ContextWrapper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import android.webkit.JavascriptInterface;
