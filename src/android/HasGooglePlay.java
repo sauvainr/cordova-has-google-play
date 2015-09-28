@@ -9,9 +9,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.webkit.JavascriptInterface;
+import android.content.pm.PackageManager
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import android.webkit.JavascriptInterface;
 
 /**
 * This class check if google play is installed
