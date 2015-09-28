@@ -1,35 +1,41 @@
 var exec = require('cordova/exec');
 
 var HasGooglePlay = {
-	hasGooglePlayServices: undefined,
-	hasGooglePlayStore: undefined,
-	check: function checkGooglePlay(callback) {
-		HasGooglePlay.hasGooglePlayServices = undefined;
-		HasGooglePlay.hasGooglePlayStore = undefined;
+  hasGooglePlayServices: undefined,
+  hasGooglePlayStore: undefined,
+  check: function checkGooglePlay(callback) {
+    HasGooglePlay.hasGooglePlayServices = undefined;
+    HasGooglePlay.hasGooglePlayStore = undefined;
 
-		exec(function (has) {
-			HasGooglePlay.hasGooglePlayServices = (has === "true");
-			if (typeof callback == 'function')
-				callback(HasGooglePlay.hasGooglePlayServices);
-		}, function (err) {
-			if (typeof callback == 'function')
-				callback(undefined, err);
+    var count = 0;
 
-			console.error(err);
-		}, "HasGooglePlay", "hasGooglePlayServices", []);
+    exec(function (has) {
+      HasGooglePlay.hasGooglePlayServices = (has === "true");
+      count++;
+      if (count == 2 && typeof callback == 'function')
+        callback(HasGooglePlay.hasGooglePlayServices);
+    }, function (err) {
+      count++;
+      if (count == 2 && typeof callback == 'function')
+        callback(undefined, err);
 
-		exec(function (has) {
-			HasGooglePlay.hasGooglePlayStore = (has === "true");
-			if (typeof callback == 'function')
-				callback(HasGooglePlay.hasGooglePlayStore);
-		}, function (err) {
-			if (typeof callback == 'function')
-				callback(undefined, err);
+      console.error(err);
+    }, "HasGooglePlay", "hasGooglePlayServices", []);
 
-			console.error(err);
-		}, "HasGooglePlay", "hasGooglePlayStore", []);
+    exec(function (has) {
+      count++;
+      HasGooglePlay.hasGooglePlayStore = (has === "true");
+      if (count == 2 && typeof callback == 'function')
+        callback(HasGooglePlay.hasGooglePlayStore);
+    }, function (err) {
+      count++;
+      if (count == 2 && typeof callback == 'function')
+        callback(undefined, err);
 
-	}
+      console.error(err);
+    }, "HasGooglePlay", "hasGooglePlayStore", []);
+
+  }
 };
 
 HasGooglePlay.check();
