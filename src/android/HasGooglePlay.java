@@ -31,9 +31,9 @@ public class HasGooglePlay extends CordovaPlugin {
 
       // String message = args.getString(0);
 
-      var hasGooglePlay = this.isGooglePlayInstalled();
+      boolean hasGooglePlay = this.isGooglePlayInstalled();
 
-      if(callbackContext) {
+      if(callbackContext != null) {
         callbackContext.success(hasGooglePlay);
       }
 
@@ -48,7 +48,7 @@ public class HasGooglePlay extends CordovaPlugin {
   @JavascriptInterface
   public boolean isGooglePlayInstalled() {
     boolean googlePlayStoreInstalled;
-    int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(MainActivity.this);
+    int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getapplicationcontext());
     googlePlayStoreInstalled = val == ConnectionResult.SUCCESS;
     return googlePlayStoreInstalled;
   }
