@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Context.*;
 import android.content.ContextWrapper.*;
 import android.view.ContextThemeWrapper.*;
+import android.app.Activity;
 import android.app.Activity.*;
 import android.content.pm.*;
 import android.app.Service.*;
